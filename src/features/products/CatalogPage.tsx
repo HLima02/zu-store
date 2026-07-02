@@ -30,8 +30,18 @@ export function CatalogPage() {
         {loading && Array.from({ length: 8}).map((_,i) => (
           <ProductCardSkeleton key={`sk-${i}`} />
         ))}
-
       </div>
+
+      {hasMore && !loading && (
+        <div className="mt-8 text-center">
+          <button
+            onClick={loadMore}
+            className="rounded-lg border border-line bg-surface px-6 py-3 text-sm font-medium transition cursor-pointer hover:border-brand hover:text-brand "
+          >
+            Carregar Mais
+          </button>
+        </div>
+      )}
     </div>
   )
 }
