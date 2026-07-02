@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { ProductCard } from "./components/ProductCard";
+import { ProductCardSkeleton } from "./components/ProductCardSkeleton";
 import { useProducts } from "./hooks/useProducts";
 
 
@@ -26,6 +27,10 @@ export function CatalogPage() {
 
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
         {products.map((p) => <ProductCard key={p.id} product={p} />)}
+        {loading && Array.from({ length: 8}).map((_,i) => (
+          <ProductCardSkeleton key={`sk-${i}`} />
+        ))}
+
       </div>
     </div>
   )
