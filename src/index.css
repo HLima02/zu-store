@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+@theme {
+  /* marca */
+  --color-brand: #FF6B3D;
+  --color-brand-dark: #E2562C;
+
+  /* neutros — loja em tema claro */
+  --color-canvas:  #FAFAF9;   /* fundo da página */
+  --color-surface: #FFFFFF;   /* cards */
+  --color-ink:     #18181B;   /* texto principal */
+  --color-muted:   #71717A;   /* texto secundário */
+  --color-line:    #E7E5E4;   /* bordas */
+
+  /* tipografia */
+  --font-sans:    "Inter", sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  --font-mono:    "JetBrains Mono", monospace;
+}
+
+/* base global da loja */
+body {
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}
