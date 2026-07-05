@@ -10,6 +10,10 @@ export interface Product {
   category: string
   thumbnail: string
   images: string[]
+  reviews?: Review[]
+  warrantyInformation?: string
+  shippingInformation?: string
+  returnPolicy?: string
 }
 
 export interface ProductsResponse {
@@ -18,3 +22,11 @@ export interface ProductsResponse {
   skip: number
   limit: number
 }
+
+export interface Review {
+  rating: number
+  commet: string
+  date: string
+  reviewerName: string
+}
+
