@@ -26,7 +26,7 @@ export function CartPage() {
       <h1 className="mb-6 font-display text-3xl font-bold">Carrinho</h1>
 
       <div className="grid gap-8 lg:grid-cols-[1fr_320px]">
-        <ul className="space-y-4">
+        <ul className="space-y-4 flex space-x-4">
           {items.map((item) => (
             <li key={item.id} className="flex flex-col w-full max-w-[320px] gap-4 rounded-xl border border-line bg-surface p-4">
               <img src={item.thumbnail} alt={item.title} className="w-full" />
