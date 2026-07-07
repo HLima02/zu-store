@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import { Link, NavLink, useNavigate } from 'react-router'
+import { useCartStore, selectTotalItems } from '@/store/cartStore'
+import { useUIStore } from '@/store/uiStore'
 
 const linkClass = ({ isActive }: { isActive: boolean}) =>  
   `text-sm transition hover:text-ink ${ isActive ? 'text-ink font-medium' : 'text-muted'}`
@@ -7,7 +9,9 @@ const linkClass = ({ isActive }: { isActive: boolean}) =>
 export function Header() {
   const navigate = useNavigate()
   const [q, setQ] = useState('')
-  const cartCount = 0
+  const cartCount = useCartStore(selectTotalItems)
+
+  const openCart = useUIStore((s) => s.openCart)
 
   const onSearch = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if(e.key === 'Enter' && q.trim()){
@@ -45,7 +49,7 @@ export function Header() {
             </svg>
           </Link>
 
-          <Link to="/carrinho" aria-label='Conta' className='relative text-muted hover:text-ink'>
+          {/* <Link to="/carrinho" aria-label='Conta' className='relative text-muted hover:text-ink'>
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
             stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
               <circle cx="9" cy="21" r="1" />
@@ -57,7 +61,22 @@ export function Header() {
                 {cartCount}
               </span>
             )}
-          </Link>
+          </Link> */}
+          <button onClick={openCart} aria-label="Carrinho"
+            className="relative text-muted hover:text-ink">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
+                <circle cx="9" cy="21" r="1" />
+                <circle cx="20" cy="21" r="1" />
+                <path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6" />
+              </svg>
+            {cartCount > 0 && (
+              <span className="absolute -right-2 -top-2 grid h-5 w-5 place-items-center
+                rounded-full bg-brand text-[11px] font-bold text-white">
+                {cartCount}
+              </span>
+            )}
+          </button>
         </div>
       </div>
     </header>
