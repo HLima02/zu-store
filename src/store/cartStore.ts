@@ -50,3 +50,6 @@ export const useCartStore = create<CartState>()(
     {name: 'zustore-cart'}
   )
 )
+
+export const selectTotalItems = (s: CartState) => s.items.reduce((n, i) => n + i.qty, 0)
+export const selectTotalPrice = (s: CartState) => s.items.reduce((n, i) => n + i.price * i.qty, 0)

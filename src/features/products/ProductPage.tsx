@@ -5,11 +5,20 @@ import { ProductGallery } from "./components/ProductGallery";
 import { ProductCardSkeleton } from "./components/ProductCardSkeleton";
 import { Star } from "@/shared/ui/Stars";
 import { formatBRL } from "@/shared/lib/format";
+import { useCartStore } from "@/store/cartStore";
 
 export function ProductPage() {
   const { id } = useParams()
-  const { product, loading, error } =useProduct(id)
+  const { product, loading, error } = useProduct(id)
   const [qtd, setQtd] = useState(1)
+
+  //Store
+  const addItem = useCartStore((s) => s.addItem)
+
+  //Função para adicionar produto ao carrinho
+  const handleAdd = () => {
+    addItem(product, qtd)
+  }
 
   if(loading) return <ProductCardSkeleton />
   if(error || !product){
@@ -79,6 +88,7 @@ export function ProductPage() {
               // Fase 04: onClick={() => addItem(product, qty)}
               className="flex-1 rounded-lg bg-brand px-6 py-3 font-medium
                 text-white transition hover:bg-brand-dark disabled:opacity-50"
+                onClick={handleAdd}
             >
               {outOfStock ? 'Esgotado' : 'Adicionar ao carrinho'}
             </button>
