@@ -22,17 +22,17 @@ export function CartPage() {
   }
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-8">
+    <div className=" px-4 py-8">
       <h1 className="mb-6 font-display text-3xl font-bold">Carrinho</h1>
 
       <div className="grid gap-8 lg:grid-cols-[1fr_320px]">
         <ul className="space-y-4">
           {items.map((item) => (
-            <li key={item.id} className="flex gap-4 rounded-xl border border-line bg-surface p-4">
-              <img src={item.thumbnail} alt={item.title} />
+            <li key={item.id} className="flex flex-col w-full max-w-[320px] gap-4 rounded-xl border border-line bg-surface p-4">
+              <img src={item.thumbnail} alt={item.title} className="w-full" />
               <div className="flex flex-1 flex-col">
                 <Link className="font-medium hover:text-brand" to={`/produto/${item.id}`}>{item.title}</Link>
-                <p className="text-sm text-muted">{ formatBRL(item.price)}</p>
+                <p className="text-sm text-muted my-3">{ formatBRL(item.price)}</p>
                 <div className="mt-auto flex items-center justify-between">
                   <div className="flex items-center rounded-lg border border-line">
                     <button onClick={() => updateQty(item.id, item.qty - 1)}
