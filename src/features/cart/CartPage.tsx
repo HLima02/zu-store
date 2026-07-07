@@ -1,8 +1,9 @@
 import { Link } from "react-router"
+import { useCartStore } from "@/store/cartStore"
 import { formatBRL } from "@/shared/lib/format"
 
 export function CartPage() {
-  const items = [{id:1, title: 'teste'}]
+  const items = useCartStore((s) => s.items)
 
   if(items.length === 0) {
     return (
@@ -21,9 +22,7 @@ export function CartPage() {
       <h1 className="mb-6 font-display text-3xl font-bold">Carrinho</h1>
 
       <div className="grid gap-8 lg:grid-cols-[1fr_320px]">
-        {items.map((item) => (
-          <li key={item.id}>{item.title}</li>
-        ))}
+       
       </div>
     </div>
   )
