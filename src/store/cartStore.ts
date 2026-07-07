@@ -43,9 +43,15 @@ export const useCartStore = create<CartState>()(
           }
         })
       },
-      removeItem: () => {},
-      updateQty: () => {},
-      clear: () => {}
+      removeItem: (id) => {
+        set((state) => ({items: state.items.filter((s) => s.id !== id)}))
+      },
+      updateQty: (id, qty) => {
+        set((state) => ({
+          items: state.items.map((i) => i.id === id ? {...i, qty: Math.max(1, qty)} : i),
+        }))
+      },
+      clear: () => set({ items: []})
     }),
     {name: 'zustore-cart'}
   )
