@@ -1,4 +1,4 @@
-import { Placeholder } from '@/shared/ui/Placeholder'
+import { ProductsBrowser } from "./components/ProductsBrowser"
 
 export const SearchPage = () =>
-  <Placeholder title="Busca" description="Resultados da pesquisa — Fase 05." />
+  <ProductsBrowser title="Resultados da busca" />

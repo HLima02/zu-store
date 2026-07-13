@@ -1,4 +1,7 @@
-import { Placeholder } from '@/shared/ui/Placeholder'
+import { useParams } from 'react-router'
+import { ProductsBrowser } from './components/ProductsBrowser'
 
-export const CategoryPage = () =>
-  <Placeholder title="Categoria" description="PLP por categoria — Fase 05." />
+export function CategoryPage() {
+  const { slug } = useParams()
+  return <ProductsBrowser lockedCategory={slug} title={slug ?? 'Categoria'} />
+}
